@@ -1,2 +1,6 @@
+# java
 .class
 **/*.class
+
+# python
+.venv
