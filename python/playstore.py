@@ -37,18 +37,16 @@ def encryptString(inputstr):
         bLen = int(((len(bytes) - 1) / 86)) + 1
         obj2 = bytearray(bLen * 133)
         encryptor = PKCS1_OAEP.new(rsaKey)
-
         while i < bLen:
             offset = i * 86
             strlen = (len(bytes) - offset if i == (bLen - 1) else 86) + offset
 
             encstr = encryptor.encrypt(bytes[offset:strlen])
-            obj2[i*133:i*133+len(obj)] = obj
-            obj2[i*133+len(obj):i*133+len(obj)+len(encstr)] = encstr
-            i+=1
+            obj2[i * 133:i * 133 + len(obj)] = obj
+            obj2[i * 133 + len(obj):i * 133 + len(obj) + len(encstr)] = encstr
+            i += 1
 
-        print(base64.standard_b64encode(obj2))
-
+        return base64.urlsafe_b64encode(obj2)
     except Exception as e:
         print(e)
         return ""

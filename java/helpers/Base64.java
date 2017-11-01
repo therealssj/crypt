@@ -580,11 +580,10 @@ public class Base64 {
         public Encoder(int flags, byte[] output) {
             this.output = output;
 
-            do_padding = (flags & NO_PADDING) == 0;
-            do_newline = (flags & NO_WRAP) == 0;
-            do_cr = (flags & CRLF) != 0;
-            alphabet = ((flags & URL_SAFE) == 0) ? ENCODE : ENCODE_WEBSAFE;
-
+            do_padding = (flags & NO_PADDING) == 0; // yes
+            do_newline = (flags & NO_WRAP) == 0; // no
+            do_cr = (flags & CRLF) != 0; // no
+            alphabet = ((flags & URL_SAFE) == 0) ? ENCODE : ENCODE_WEBSAFE; // websafe
             tail = new byte[2];
             tailLen = 0;
 

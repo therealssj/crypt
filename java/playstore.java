@@ -10,7 +10,7 @@ class PlayStore
 {
     public static void main(String[] args)
      {
-        String encrypted = encryptString("lemail"+"\u0000"+"lepassword");
+        String encrypted = encryptString("leemail"+"\u0000"+"lepassword");
         System.out.println(encrypted);
      }
 
@@ -18,7 +18,7 @@ class PlayStore
       try {
           byte[] decode = Base64.decode(str, 0);
           int readInt = readInt(decode, 0);
-          byte[] obj = new byte[readInt];
+          byte[] obj = new byte[readInt];          
           System.arraycopy(decode, 4, obj, 0, readInt);
           BigInteger bigInteger = new BigInteger(1, obj);
           int readInt2 = readInt(decode, readInt + 4);
@@ -58,11 +58,20 @@ class PlayStore
       				doFinal.length);
       		i++;
       	}
-        
       	return Base64.encodeToString(obj2, 10);
       } catch (Throwable e) {
       	throw new RuntimeException(e);
       }
+    }
+
+    public static void printObj(byte[] obj, String msgstart, String msgend) {
+        System.out.println(msgstart);
+        int i=0;
+        while( i < obj.length ) {
+          System.out.println(obj[i]);
+          i++;
+        }
+        System.out.println(msgend);
     }
 
     private static int readInt(byte[] bArr, int i) {
